@@ -48,6 +48,7 @@ compilers.windows = async o => {
   zip.file(prefix + "index.html", o.html);
   console.log("Generating app for Windows...")
   let zipBlob = await zip.generateAsync({ type: "blob" });
+  console.log("Generated app for Windows!")
   return zipBlob;
 };
 
@@ -67,7 +68,10 @@ compilers.linux = async o => {
   );
   zip.file(prefix + "icon.png", o.icon);
   zip.file(prefix + "index.html", o.html);
-  return zip.generateAsync({ type: "blob" });
+  console.log("Generating app for Linux...")
+  let zipBlob= await zip.generateAsync({ type: "blob" });
+  console.log("Generated app for Linux!")
+  return zipBlob
 };
 
 compilers.mac = async o => {
@@ -89,20 +93,28 @@ compilers.mac = async o => {
   );
   zip.file(prefix + "icon.png", o.icon);
   zip.file(prefix + "index.html", o.html);
-  return zip.generateAsync({ type: "blob" });
+  console.log("Generating app for Mac...")
+  let zipBlob=await zip.generateAsync({ type: "blob" });
+  console.log("Generated app for Mac!")
+  return zipBlob
 };
 
 compilers.allTargets = async o => {
+  console.log("Generating all targets...")
   let [linux, windows, mac] = await Promise.all([
     compilers.linux(o),
     compilers.windows(o),
     compilers.mac(o)
   ]);
+  console.log("Generated all targets!")
   let zip = new JSZip();
   zip.file("windows.zip", windows);
   zip.file("linux.zip", linux);
   zip.file("mac.zip", mac);
+  console.log("Bundling all targets...")
   return zip.generateAsync({ type: "blob" });
+  console.log("Bundled all targets!")
+  console.log("Build Done!")
 };
 
 Comlink.expose(compilers)
