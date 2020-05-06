@@ -91,24 +91,3 @@ compilers.allTargets = async o => {
   zip.file("mac.zip", mac);
   return zip.generateAsync({ type: "blob" });
 };
-
-async () => {
-  let o = {
-    name: "Test App",
-    icon: "https://cdn2.scratch.mit.edu/get_image/user/default_90x90.png",
-    html: `<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Test App</title>
-  </head>
-  <body>
-  <h1>Hello, World!</h1>
-  </body>
-</html>`
-  };
-  o.icon = await (await fetch("https://yacdn.org/serve/" + o.icon)).blob();
-
-  location.href = URL.createObjectURL(await compilers.linux(o));
-};
