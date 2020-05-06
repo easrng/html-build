@@ -54,8 +54,7 @@ compilers.linux = async o => {
   );
   zip.file(prefix + "icon.png", o.icon);
   zip.file(prefix + "index.html", o.html);
-  let zipBlob = await zip.generateAsync({ type: "blob" });
-  return zipBlob;
+  return zip.generateAsync({ type: "blob" });
 };
 
 compilers.mac = async o => {
@@ -77,8 +76,20 @@ compilers.mac = async o => {
   );
   zip.file(prefix + "icon.png", o.icon);
   zip.file(prefix + "index.html", o.html);
-  let zipBlob = await zip.generateAsync({ type: "blob" });
-  return zipBlob;
+  return zip.generateAsync({ type: "blob" });
+};
+
+compilers.allTargets = async o => {
+  let [linux, windows, mac] = await Promise.all([
+    compilers.linux(o),
+    compilers.windows(o),
+    compilers.mac(o)
+  ]);
+  let zip = new JSZip();
+  zip.file("windows.zip", windows);
+  zip.file("linux.zip", linux);
+  zip.file("mac.zip", mac);
+  return zip.generateAsync({ type: "blob" });
 };
 
 async () => {
