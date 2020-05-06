@@ -5,19 +5,28 @@ importScripts("https://stuk.github.io/jszip/dist/jszip.js");
 let compilers = {};
 let allNwjs = {
   windows: (async () => {
-    return await (await fetch(
+    console.log("Loading Windows nw.js")
+    let b=await (await fetch(
       "https://yacdn.org/serve/https://dl.nwjs.io/v0.45.5/nwjs-v0.45.5-win-x64.zip"
     )).blob();
+    console.log("Loaded Windows nw.js")
+    return b
   })(),
   mac: (async () => {
-    return await (await fetch(
+    console.log("Loading Mac nw.js")
+    let b= await (await fetch(
       "https://yacdn.org/serve/https://dl.nwjs.io/v0.45.5/nwjs-v0.45.5-osx-x64.zip"
     )).blob();
+    console.log("Loaded Mac nw.js")
+    return b
   })(),
   linux: (async () => {
-    return await (await fetch(
+    console.log("Loading Linux nw.js")
+    let b= await (await fetch(
       "https://cdn.glitch.com/81b8b52c-881a-4697-bf55-08cc61865172%2Fnwjs-v0.45.5-linux-x64.zip?v=1588776347141"
     )).blob();
+    console.log("Loaded Linux nw.js")
+    return b
   })()
 };
 
@@ -37,6 +46,7 @@ compilers.windows = async o => {
   );
   zip.file(prefix + "icon.png", o.icon);
   zip.file(prefix + "index.html", o.html);
+  console.log("Generating app for Windows...")
   let zipBlob = await zip.generateAsync({ type: "blob" });
   return zipBlob;
 };
