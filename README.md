@@ -1,37 +1,7 @@
-Welcome to Glitch
-=================
+About
+============
+I made a new tool called HTML Build that builds Linux, Mac, and Windows apps from an HTML file. To make an app, use the HTMLifier, then upload the HTMLified project and an icon ( in PNG format ) to https://html-build.glitch.me/, type in a name, click build, and wait. And wait. And wait. Status messages are logged to the console. When it's done, it will download a zip file. In that zip, there are 3 more, for Linux, Mac, and Windows respectively. Run the file in your platform's zip that sounds most like “nw” or “nwjs”.
 
-Click `Show` in the header to see your app live. Updates to your code will instantly deploy and update live.
-
-**Glitch** is the friendly community where you'll build the app of your dreams. Glitch lets you instantly create, remix, edit, and host an app, bot or site, and you can invite collaborators or helpers to simultaneously edit code with you.
-
-Find out more [about Glitch](https://glitch.com/about).
-
-
-Your Project
+How It Works
 ------------
-
-### ← README.md
-
-That's this file, where you can tell people what your cool website does and how you built it.
-
-### ← index.html
-
-Where you'll write the content of your website. 
-
-### ← style.css
-
-CSS files add styling rules to your content.
-
-### ← script.js
-
-If you're feeling fancy you can add interactivity to your site with JavaScript.
-
-### ← assets
-
-Drag in `assets`, like images or music, to add them to your project
-
-Made by [Glitch](https://glitch.com/)
--------------------
-
-\ ゜o゜)ノ
+This is a web app that downloads zip files from the nw.js servers, and adds the necessary files with JSZip. No information from the form is sent to any servers. I hope you find this useful!

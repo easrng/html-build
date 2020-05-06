@@ -112,9 +112,10 @@ compilers.allTargets = async o => {
   zip.file("linux.zip", linux);
   zip.file("mac.zip", mac);
   console.log("Bundling all targets...")
-  return zip.generateAsync({ type: "blob" });
+  let zipBlob=await zip.generateAsync({ type: "blob" });
   console.log("Bundled all targets!")
   console.log("Build Done!")
+  return zipBlob
 };
 
 Comlink.expose(compilers)
