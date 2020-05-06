@@ -1,7 +1,15 @@
 import consoleEle from "./consoleEle.js";
-[...document.querySelector("header").children].forEach(e=>{
-consoleEle(e.textContent.replace(/\s+/g," ").trim(),e.tagName,e.id,e.className)
-})
+[document.querySelector("h1")].forEach(e => {
+  consoleEle(
+    e.textContent.replace(/\s+/g, " ").trim(),
+    e.tagName,
+    e.id,
+    e.className,
+    "info"
+  );
+});
+console.info("Status will appear below.");
+console.info("")
 import * as Comlink from "https://unpkg.com/comlink/dist/esm/comlink.mjs";
 const worker = new Worker("worker.js");
 const compilers = Comlink.wrap(worker);

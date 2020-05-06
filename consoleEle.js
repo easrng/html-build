@@ -1,4 +1,4 @@
-export default function consoleEle(text, tag, id, klass) {
+export default function consoleEle(text, tag, id, klass, method) {
   let e = document.createElement(tag||"pre");
   e.id = id||"";
   e.className = klass||"";
@@ -6,5 +6,5 @@ export default function consoleEle(text, tag, id, klass) {
   document.body.appendChild(e);
   let s = getComputedStyle(e).cssText.replace(/display:[^;]+;/g,"");
   e.remove();
-  console.log("%c"+text, s);
+  console[method||"log"]("%c"+text, s);
 }
