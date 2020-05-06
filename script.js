@@ -3,7 +3,12 @@ let compilers = {};
 let allNwjs = {
   windows: (async () => {
     return await (await fetch(
-      "https://yacdn.org/serve/https://dl.nwjs.io/v0.45.5/nwjs-v0.45.5-win-x64.zip"
+      //"https://yacdn.org/serve/https://dl.nwjs.io/v0.45.5/nwjs-v0.45.5-win-x64.zip"
+    )).blob();
+  })(),
+  mac: (async () => {
+    return await (await fetch(
+      "https://yacdn.org/serve/https://dl.nwjs.io/v0.45.5/nwjs-v0.45.5-osx-x64.zip"
     )).blob();
   })()
 };
@@ -47,4 +52,4 @@ compilers.windows = async o => {
   o.icon = await (await fetch("https://yacdn.org/serve/" + o.icon)).blob();
 
   location.href = URL.createObjectURL(await compilers.windows(o));
-})();
+})
