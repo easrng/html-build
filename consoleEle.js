@@ -1,7 +1,10 @@
-function consoleEle(selector) {
-  let e = document.createElement("h1");
+export default function consoleEle(text, tag, id, klass) {
+  let e = document.createElement(tag||"pre");
+  e.id = id||"";
+  e.className = klass||"";
+  e.style.display="none";
   document.body.appendChild(e);
-  let s = getComputedStyle(e).cssText;
+  let s = getComputedStyle(e).cssText.replace(/display:[^;]+;/g,"");
   e.remove();
-  console.log("%cHello", s);
+  console.log("%c"+text, s);
 }

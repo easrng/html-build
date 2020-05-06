@@ -10,22 +10,30 @@
     <link rel="stylesheet" href="/style.css" />
 
     <!-- import the webpage's javascript file -->
-    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js" integrity="sha256-u/J1Urdrk3nCYFefpoeTMgI5viU1ujCDu2fXXoSJjhg=" crossorigin="anonymous" defer></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js"
+      integrity="sha256-u/J1Urdrk3nCYFefpoeTMgI5viU1ujCDu2fXXoSJjhg="
+      crossorigin="anonymous"
+      defer
+    ></script>
     <script src="/script.js" type="module" defer></script>
   </head>
   <body>
-    <h1>HTML Build</h1>
-    <p>
-      Make apps for Mac (x64), Windows (x64), and Linux (x64), all in your browser. Status output is in the JS console.
-    </p>
+    <header>
+      <h1>HTML Build</h1>
+      <p>
+        Make apps for Mac (x64), Windows (x64), and Linux (x64), all in your
+        browser. Status output is in the JS console.
+      </p>
+    </header>
     <form>
       <label for="name">App Name:</label>
-      <input type="text" id="name">
+      <input type="text" id="name" />
       <label for="html">HTML File:</label>
       <input type="file" id="html" accept="text/html" />
       <label for="icon">Icon:</label>
       <input type="file" id="icon" accept="image/png" />
-      <input type="submit" value="Build">
+      <input type="submit" value="Build" />
     </form>
   </body>
 </html>
