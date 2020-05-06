@@ -1,4 +1,7 @@
-/* global JSZip */
+/* global JSZip Comlink */
+importScripts("https://unpkg.com/comlink/dist/umd/comlink.js");
+importScripts("https://stuk.github.io/jszip/dist/jszip.js");
+
 let compilers = {};
 let allNwjs = {
   windows: (async () => {
@@ -91,3 +94,5 @@ compilers.allTargets = async o => {
   zip.file("mac.zip", mac);
   return zip.generateAsync({ type: "blob" });
 };
+
+Comlink.expose(compilers)
