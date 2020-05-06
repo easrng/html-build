@@ -16,21 +16,16 @@
   <body>
     <h1>HTML Build</h1>
     <p>
-      Make apps for Mac, Windows, and Linux, all in your browser.
+      Make apps for Mac (x64), Windows (x64), and Linux (x64), all in your browser. Status output is in the JS console.
     </p>
     <form>
       <label for="name">App Name:</label>
       <input type="text" id="name">
       <label for="html">HTML File:</label>
-      <input type="file" id="html" />
+      <input type="file" id="html" accept="text/html" />
       <label for="icon">Icon:</label>
-      <input type="file" id="icon" />
+      <input type="file" id="icon" accept="image/png" />
       <input type="submit" value="Build">
     </form>
-
-    <!-- include the Glitch button to show what the webpage is about and
-          to make it easier for folks to view source and remix -->
-    <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
-    <script src="https://button.glitch.me/button.js"></script>
   </body>
 </html>
