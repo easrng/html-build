@@ -43,7 +43,7 @@ compilers.windows = async o => {
   let prefix = Object.keys(zip.files)
     .join("\n")
     .match(/^(.+\/)credits.html$/m)[1];
-  await Promise.all(zip.folder(prefix).filter(e=>true).map(async (_, e) => {
+  await Promise.all(zip.folder(prefix).filter(e=>true).map(async e => {
     zip.file("internal/" + e.name, await e.async("uint8array"));
   }));
   zip.remove(prefix)
