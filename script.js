@@ -9,7 +9,7 @@ import consoleEle from "./consoleEle.js";
   );
 });
 console.info("Status will appear below.");
-console.info("")
+console.info("");
 import * as Comlink from "https://unpkg.com/comlink/dist/esm/comlink.mjs";
 const worker = new Worker("worker.js");
 const compilers = Comlink.wrap(worker);
@@ -24,10 +24,12 @@ document.querySelector("body > form").onsubmit = async e => {
     name: document.querySelector("#name").value
   };
   document.querySelector(
-    "body > form > input[type=submit]:nth-child(7)"
+    "body > form > input[type=submit]"
   ).disabled = true;
-  saveAs(await compilers.allTargets(o), o.name + ".zip");
+  for (let target of targets) {
+    saveAs(await compilers[target](o), o.name + " - " + target + ".zip");
+  }
   document.querySelector(
-    "body > form > input[type=submit]:nth-child(7)"
+    "body > form > input[type=submit]"
   ).disabled = false;
 };
