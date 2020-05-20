@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+    <key>PayloadOrganization</key>
+    <string>HTML Build</string>
+    <key>PayloadIdentifier</key>
+    <string>me.glitch.html-build.ios.app.${genUUID()}</string>
+    <key>PayloadUUID</key>
+    <string>${genUUID()}</string>
+    <key>PayloadDisplayName</key>
+    <string>${o.name}</string>
+    <key>PayloadDescription</key>
+    <string>App made with HTML Build.</string>
+    <key>PayloadRemovalDisallowed</key>
+    <false />
+    <key>PayloadContent</key>
+    <array>
+      <dict>
+        <key>PayloadType</key>
+        <string>com.apple.webClip.managed</string>
+        <key>PayloadVersion</key>
+        <integer>1</integer>
+        <key>PayloadIdentifier</key>
+        <string>me.glitch.html-build.ios.icon.${genUUID()}</string>
+        <key>PayloadUUID</key>
+        <string>${genUUID()}</string>
+        <key>PayloadDisplayName</key>
+        <string>App</string>
+        <key>PayloadDescription</key>
+        <string>App made with HTML Build.</string>
+        <key>PayloadOrganization</key>
+        <string>HTML Build</string>
+        <key>URL</key>
+        <string>data:text/html,Test</string>
+        <key>Label</key>
+        <string>Test icon</string>
+        <key>Icon</key>
+        <data>iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=</data>
+        <key>IsRemovable</key>
+        <true />
+        <key>FullScreen</key>
+        <true />
+      </dict>
+    </array>
+  </dict>
+</plist>
