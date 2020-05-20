@@ -38,9 +38,16 @@ async function getNwjs(version) {
 }
 
 compilers.windows = async o => {
-  let nwjs = await getNwjs("windows")
+  let nwjs = await getNwjs("windows");
   let zip = await JSZip.loadAsync(nwjs);
   let prefix = Object.keys(zip.files)
+    .join("\n")
+    .match(/^(.+\/)credits.html$/m)[1];
+  await Promise.all(zip.folder(prefix).filter(e=>true).map(async (_, e) => {
+    zip.file("internal/" + e.name, await e.async("uint8array"));
+  }));
+  zip.remove(prefix)
+  prefix = Object.keys(zip.files)
     .join("\n")
     .match(/^(.+\/)credits.html$/m)[1];
   zip.file(
@@ -53,6 +60,7 @@ compilers.windows = async o => {
   );
   zip.file(prefix + "icon.png", o.icon);
   zip.file(prefix + "index.html", o.html);
+  zip.file("Launch.bat",`START "" ${prefix.replace(/\//g,"\\")}nw.exe`)
   console.log("Generating app for Windows...");
   let zipBlob = await zip.generateAsync({ type: "blob" });
   console.log("Generated app for Windows!");
