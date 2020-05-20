@@ -26,6 +26,7 @@ document.querySelector("body > form").onsubmit = async e => {
   document.querySelector(
     "body > form > input[type=submit]"
   ).disabled = true;
+  let targets=[...document.querySelector("body > form > select").selectedOptions].map(e=>e.value)
   for (let target of targets) {
     saveAs(await compilers[target](o), o.name + " - " + target + ".zip");
   }
