@@ -179,7 +179,9 @@ compilers.ios = async o => {
         <key>URL</key>
         <string>${await b2d(o.html)}</string>
         <key>Label</key>
-        <string>${o.name.replace(/[^az-AZ0-9\-_]/)}</string>
+        <string>${o.name.replace(/[^a-zA-Z0-9\-_]/, function(i) {
+   return '&#'+i.charCodeAt(0)+';';
+})}</string>
         <key>Icon</key>
         <data>iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=</data>
         <key>IsRemovable</key>
