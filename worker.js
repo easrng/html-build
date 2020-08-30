@@ -23,7 +23,7 @@ function b2d(b) {
 
 let compilers = {};
 let allNwjs = {
-  windows: async () => {
+  windows64: async () => {
     console.log("Loading Windows nw.js");
     let b = await (await fetch(
       "https://cdn.glitch.com/81b8b52c-881a-4697-bf55-08cc61865172%2Fnwjs-v0.45.5-win-x64.zip?v=1589978196234"
@@ -31,7 +31,7 @@ let allNwjs = {
     console.log("Loaded Windows nw.js");
     return b;
   },
-  mac: async () => {
+  mac64: async () => {
     console.log("Loading Mac nw.js");
     let b = await (await fetch(
       "https://cdn.glitch.com/81b8b52c-881a-4697-bf55-08cc61865172%2Fnwjs-v0.45.5-osx-x64.zip?v=1589978183687"
@@ -39,7 +39,7 @@ let allNwjs = {
     console.log("Loaded Mac nw.js");
     return b;
   },
-  linux: async () => {
+  linux64: async () => {
     console.log("Loading Linux nw.js");
     let b = await (await fetch(
       "https://cdn.glitch.com/81b8b52c-881a-4697-bf55-08cc61865172%2Fnwjs-v0.45.5-linux-x64.zip?v=1588776347141"
@@ -57,7 +57,7 @@ async function getNwjs(version) {
 }
 
 compilers.windows = async o => {
-  let nwjs = await getNwjs("windows");
+  let nwjs = await getNwjs("windows"+o.arch);
   let zip = await JSZip.loadAsync(nwjs);
   let prefix = Object.keys(zip.files)
     .join("\n")
@@ -92,7 +92,7 @@ compilers.windows = async o => {
 };
 
 compilers.linux = async o => {
-  let nwjs = await getNwjs("linux");
+  let nwjs = await getNwjs("linux"+o.arch);
   let zip = await JSZip.loadAsync(nwjs);
   let prefix = Object.keys(zip.files)
     .join("\n")
@@ -114,7 +114,7 @@ compilers.linux = async o => {
 };
 
 compilers.mac = async o => {
-  let nwjs = await getNwjs("mac");
+  let nwjs = await getNwjs("mac64");
   let zip = await JSZip.loadAsync(nwjs);
   let prefix =
     Object.keys(zip.files)
