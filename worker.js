@@ -54,6 +54,14 @@ let allNwjs = {
     )).blob();
     console.log("Loaded Linux64 nw.js");
     return b;
+  },
+  linux32: async () => {
+    console.log("Loading Linux32 nw.js");
+    let b = await (await fetch(
+      "https://cdn.glitch.com/81b8b52c-881a-4697-bf55-08cc61865172%2Fnwjs-v0.48.1-linux-ia32.zip?v=1599844124303"
+    )).blob();
+    console.log("Loaded Linux32 nw.js");
+    return b;
   }
 };
 
