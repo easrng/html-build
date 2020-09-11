@@ -21,18 +21,18 @@ document.querySelector("body > form").onsubmit = async e => {
       URL.createObjectURL(document.querySelector("#html").files[0])
     )).text(),
     icon: new Blob([document.querySelector("#icon").files[0]]),
-    name: document.querySelector("#name").value,
-    
+    name: document.querySelector("#name").value
   };
-  document.querySelector(
-    "body > form > input[type=submit]"
-  ).disabled = true;
-  let targets=[...document.querySelector("body > form > select").selectedOptions].map(e=>e.value)
+  document.querySelector("body > form > input[type=submit]").disabled = true;
+  let targets = [
+    ...document.querySelector("body > form > select").selectedOptions
+  ].map(e => e.value);
   for (var target of targets) {
-    var [target, arch]=target.split("-")
-    saveAs(await compilers[target]({...o,arch}), o.name + " - " + target + ".zip");
+    var [target, arch] = target.split("-");
+    saveAs(
+      await compilers[target]({ ...o, arch }),
+      o.name + (arch ? " " + arch : "") + " - " + target + ".zip"
+    );
   }
-  document.querySelector(
-    "body > form > input[type=submit]"
-  ).disabled = false;
+  document.querySelector("body > form > input[type=submit]").disabled = false;
 };
