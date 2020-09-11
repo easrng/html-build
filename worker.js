@@ -24,27 +24,35 @@ function b2d(b) {
 let compilers = {};
 let allNwjs = {
   windows64: async () => {
-    console.log("Loading Windows nw.js");
+    console.log("Loading Windows64 nw.js");
     let b = await (await fetch(
-      "https://cdn.glitch.com/81b8b52c-881a-4697-bf55-08cc61865172%2Fnwjs-v0.45.5-win-x64.zip?v=1589978196234"
+      "https://cdn.glitch.com/81b8b52c-881a-4697-bf55-08cc61865172%2Fnwjs-v0.48.0-win-x64.zip?v=1598799449670"
     )).blob();
-    console.log("Loaded Windows nw.js");
+    console.log("Loaded Windows64 nw.js");
+    return b;
+  },
+  windows32: async () => {
+    console.log("Loading Windows32 nw.js");
+    let b = await (await fetch(
+      "https://cdn.glitch.com/81b8b52c-881a-4697-bf55-08cc61865172%2Fnwjs-v0.48.0-win-ia32.zip?v=1598799436756"
+    )).blob();
+    console.log("Loaded Windows32 nw.js");
     return b;
   },
   mac64: async () => {
     console.log("Loading Mac nw.js");
     let b = await (await fetch(
-      "https://cdn.glitch.com/81b8b52c-881a-4697-bf55-08cc61865172%2Fnwjs-v0.45.5-osx-x64.zip?v=1589978183687"
+      "https://cdn.glitch.com/81b8b52c-881a-4697-bf55-08cc61865172%2Fnwjs-v0.48.0-osx-x64.zip?v=1598799481084"
     )).blob();
     console.log("Loaded Mac nw.js");
     return b;
   },
   linux64: async () => {
-    console.log("Loading Linux nw.js");
+    console.log("Loading Linux64 nw.js");
     let b = await (await fetch(
       "https://cdn.glitch.com/81b8b52c-881a-4697-bf55-08cc61865172%2Fnwjs-v0.45.5-linux-x64.zip?v=1588776347141"
     )).blob();
-    console.log("Loaded Linux nw.js");
+    console.log("Loaded Linux64 nw.js");
     return b;
   }
 };

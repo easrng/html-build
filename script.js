@@ -21,14 +21,16 @@ document.querySelector("body > form").onsubmit = async e => {
       URL.createObjectURL(document.querySelector("#html").files[0])
     )).text(),
     icon: new Blob([document.querySelector("#icon").files[0]]),
-    name: document.querySelector("#name").value
+    name: document.querySelector("#name").value,
+    
   };
   document.querySelector(
     "body > form > input[type=submit]"
   ).disabled = true;
   let targets=[...document.querySelector("body > form > select").selectedOptions].map(e=>e.value)
-  for (let target of targets) {
-    saveAs(await compilers[target](o), o.name + " - " + target + ".zip");
+  for (var target of targets) {
+    var [target, arch]=target.split("-")
+    saveAs(await compilers[target]({...o,arch}), o.name + " - " + target + ".zip");
   }
   document.querySelector(
     "body > form > input[type=submit]"
