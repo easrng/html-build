@@ -17,8 +17,8 @@ const compilers = Comlink.wrap(worker);
 document.querySelector("body > form").onsubmit = async e => {
   e.preventDefault();
   let o = {
-    html: new Blob([document.querySelector("#html").files[0]]),
-    icon: new Blob([document.querySelector("#icon").files[0]]),
+    html: document.querySelector("#html").files[0],
+    icon: document.querySelector("#icon").files[0],
     name: document.querySelector("#name").value
   };
   document.querySelector("body > form > input[type=submit]").disabled = true;
