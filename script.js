@@ -17,9 +17,7 @@ const compilers = Comlink.wrap(worker);
 document.querySelector("body > form").onsubmit = async e => {
   e.preventDefault();
   let o = {
-    html: await (await fetch(
-      URL.createObjectURL(document.querySelector("#html").files[0])
-    )).text(),
+    html: new Blob([document.querySelector("#html").files[0]]),
     icon: new Blob([document.querySelector("#icon").files[0]]),
     name: document.querySelector("#name").value
   };

@@ -64,7 +64,6 @@ let allNwjs = {
     return b;
   }
 };
-
 async function getNwjs(version) {
   if (typeof allNwjs[version] == "function") {
     allNwjs[version] = allNwjs[version]();
@@ -73,7 +72,7 @@ async function getNwjs(version) {
 }
 
 compilers.windows = async o => {
-  let nwjs = await getNwjs("windows"+o.arch);
+  let nwjs = await getNwjs("windows" + o.arch);
   let zip = await JSZip.loadAsync(nwjs);
   let prefix = Object.keys(zip.files)
     .join("\n")
@@ -108,7 +107,7 @@ compilers.windows = async o => {
 };
 
 compilers.linux = async o => {
-  let nwjs = await getNwjs("linux"+o.arch);
+  let nwjs = await getNwjs("linux" + o.arch);
   let zip = await JSZip.loadAsync(nwjs);
   let prefix = Object.keys(zip.files)
     .join("\n")
@@ -155,7 +154,21 @@ compilers.mac = async o => {
 };
 
 compilers.ios = async o => {
-  return new Blob([`<?xml version="1.0" encoding="UTF-8"?>
+  let ic = new OffscreenCanvas(512, 512);
+  ic.getContext("2d").drawImage(
+    await createImageBitmap(o.icon),
+    0,
+    0,
+    512,
+    512
+  );
+  ic = await ic.convertToBlob({ type: "image/png" });
+  let zip = new JSZip();
+  zip.file(
+    "Click to install.mobileconfig",
+    new Blob(
+      [
+        `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
   <dict>
@@ -196,10 +209,10 @@ compilers.ios = async o => {
         <string>${await b2d(o.html)}</string>
         <key>Label</key>
         <string>${o.name.replace(/[^a-zA-Z0-9\-_]/, function(i) {
-   return '&#'+i.charCodeAt(0)+';';
-})}</string>
+          return "&#" + i.charCodeAt(0) + ";";
+        })}</string>
         <key>Icon</key>
-        <data>iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII=</data>
+        <data>${(await b2d(ic)).split(",")[1]}</data>
         <key>IsRemovable</key>
         <true />
         <key>FullScreen</key>
@@ -208,7 +221,15 @@ compilers.ios = async o => {
     </array>
   </dict>
 </plist>
-`],"application/x-apple-aspen-config");
+`
+      ],
+      { type: "application/x-apple-aspen-config" }
+    )
+  );
+  console.log("Generating app for iOS...");
+  let zipBlob = await zip.generateAsync({ type: "blob" });
+  console.log("Generated app for iOS!");
+  return zipBlob;
 };
 
 Comlink.expose(compilers);
