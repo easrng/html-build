@@ -34,3 +34,16 @@ document.querySelector("body > form").onsubmit = async e => {
   }
   document.querySelector("body > form > input[type=submit]").disabled = false;
 };
+let defaultParams = Object.fromEntries([
+  ...new URLSearchParams(location.search).entries()
+]);
+document.querySelector("#name").value = defaultParams.name || "";
+async function createFileListFromString(str) {
+  str=str.split("|");
+  let list = new DataTransfer();
+  let file = new File([await(await fetch(str[1])).blob()], str[0]);
+  list.items.add(file);
+  return list.files;
+}
+if(defaultParams.icon)createFileListFromString(defaultParams.icon).then(e=>document.querySelector("#icon").files=e)
+if(defaultParams.html)createFileListFromString(defaultParams.html).then(e=>document.querySelector("#html").files=e)
