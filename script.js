@@ -1,4 +1,6 @@
+/* global beacon */
 import * as Comlink from "https://unpkg.com/comlink/dist/esm/comlink.mjs";
+beacon("load")
 const worker = new Worker("worker.js");
 const compilers = Comlink.wrap(worker);
 const log=document.querySelector("#log")
