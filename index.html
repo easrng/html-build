@@ -5,11 +5,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="/style.css" />
-
-    <!-- import the webpage's javascript file -->
+    <link rel="stylesheet" href="https://unpkg.com/marx-css/css/marx.min.css" />
     <script
       src="https://cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js"
       integrity="sha256-u/J1Urdrk3nCYFefpoeTMgI5viU1ujCDu2fXXoSJjhg="
@@ -19,30 +15,32 @@
     <script src="/script.js" type="module" defer></script>
   </head>
   <body>
-    <header>
-      <h1>HTML Build</h1>
-      <p>
-        Make apps for Mac, Windows, Linux, and iOS, all in your
-        browser.
-      </p>
-    </header>
-    <form>
-      <label for="name">App Name:</label>
-      <input type="text" id="name" />
-      <label for="html">HTML File:</label>
-      <input type="file" id="html" accept="text/html" />
-      <label for="icon">Icon:</label>
-      <input type="file" id="icon" accept="image/png" />
-      <label for="targets">Targets:</label>
-      <select multiple size="6">
-        <option value="windows-64">Windows 64-bit</option>
-        <option value="windows-32">Windows 32-bit</option>
-        <option value="mac">Mac 64-bit</option>
-        <option value="linux-64">Linux 64-bit</option>
-        <option value="linux-32">Linux 64-bit</option>
-        <option value="ios">iOS</option>
-      </select>
-      <input type="submit" value="Build" />
-    </form>
+    <main>
+      <header>
+        <h1>HTML Build</h1>
+        <p>
+          Make apps for Mac, Windows, Linux, and iOS, all in your browser.
+        </p>
+      </header>
+      <form>
+        <label for="name">App Name:</label>
+        <input type="text" id="name" />
+        <label for="html">HTML File:</label>
+        <input type="file" id="html" accept="text/html" />
+        <label for="icon">Icon:</label>
+        <input type="file" id="icon" accept="image/png" />
+        <label for="targets">Targets:</label>
+        <select multiple size="6">
+          <option value="windows-64">Windows 64-bit</option>
+          <option value="windows-32">Windows 32-bit</option>
+          <option value="mac">Mac 64-bit</option>
+          <option value="linux-64">Linux 64-bit</option>
+          <option value="linux-32">Linux 32-bit</option>
+          <option value="ios">iOS</option>
+        </select>
+        <br />
+        <input type="submit" value="Build" />
+      </form>
+    </main>
   </body>
 </html>

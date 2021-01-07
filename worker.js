@@ -50,7 +50,7 @@ let allNwjs = {
   linux64: async () => {
     console.log("Loading Linux64 nw.js");
     let b = await (await fetch(
-      "https://cdn.glitch.com/81b8b52c-881a-4697-bf55-08cc61865172%2Fnwjs-v0.45.5-linux-x64.zip?v=1588776347141"
+      "https://cdn.glitch.com/81b8b52c-881a-4697-bf55-08cc61865172%2Fnwjs-v0.48.1-linux-x64.zip?v=1599844214939"
     )).blob();
     console.log("Loaded Linux64 nw.js");
     return b;
