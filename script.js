@@ -1,7 +1,6 @@
 /* global getBeacon */
 import * as Comlink from "https://unpkg.com/comlink/dist/esm/comlink.mjs";
-import getBeacon from "./stats.js"
-const beacon=getBeacon("html-build")
+import beacon from "https://easrng.github.io/stats-control/stats.js"
 beacon("page-load")
 const worker = new Worker("worker.js");
 const compilers = Comlink.wrap(worker);
