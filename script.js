@@ -1,5 +1,6 @@
 /* global getBeacon */
 import * as Comlink from "https://unpkg.com/comlink/dist/esm/comlink.mjs";
+import getBeacon from "./stats.js"
 const beacon=getBeacon("html-build")
 beacon("page-load")
 const worker = new Worker("worker.js");
