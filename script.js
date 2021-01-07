@@ -1,5 +1,3 @@
-console.info("Status will appear below.");
-console.info("");
 import * as Comlink from "https://unpkg.com/comlink/dist/esm/comlink.mjs";
 const worker = new Worker("worker.js");
 const compilers = Comlink.wrap(worker);
@@ -16,6 +14,7 @@ document.querySelector("form").onsubmit = async e => {
     name: document.querySelector("#name").value
   };
   document.querySelector("form input[type=submit]").disabled = true;
+  document.querySelector("#setCursor").textContent="*{cursor:wait!important;}"
   let targets = [
     ...document.querySelector("form select").selectedOptions
   ].map(e => e.value);
@@ -27,6 +26,7 @@ document.querySelector("form").onsubmit = async e => {
     );
   }
   document.querySelector("form input[type=submit]").disabled = false;
+  document.querySelector("#setCursor").textContent="";
 };
 let defaultParams = Object.fromEntries([
   ...new URLSearchParams(location.search).entries()
@@ -41,11 +41,3 @@ async function createFileListFromString(str) {
 }
 if(defaultParams.icon)createFileListFromString(defaultParams.icon).then(e=>document.querySelector("#icon").files=e)
 if(defaultParams.html)createFileListFromString(defaultParams.html).then(e=>document.querySelector("#html").files=e)
-for(let e of document.querySelectorAll('input[type="file"]')){
-let b=document.createElement("button")
-b.type="button"
-b.textContent="Choose File"
-e.insertAdjacentElement("beforeBegin",b)
-b.addEventListener("click",()=>e.click())
-e.style.display="none"
-}

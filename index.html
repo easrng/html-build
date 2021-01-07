@@ -23,6 +23,7 @@
         height: 10rem;
       }
     </style>
+    <style id="setCursor"></style>
   </head>
   <body>
     <main>
@@ -69,5 +70,15 @@
         </div>
       </form>
     </main>
+    <script>
+      for (let e of document.querySelectorAll('input[type="file"]')) {
+        let b = document.createElement("button");
+        b.type = "button";
+        b.textContent = "Choose File";
+        e.insertAdjacentElement("beforeBegin", b);
+        b.addEventListener("click", () => e.click());
+        e.style.display = "none";
+      }
+    </script>
   </body>
 </html>
