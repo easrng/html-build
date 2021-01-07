@@ -20,8 +20,8 @@ function b2d(b) {
     f.readAsDataURL(b);
   });
 }
-
-let compilers = {};
+let logger=(e)=>console.log(e);
+let compilers = {setLogger:fn=>logger=fn};
 let allNwjs = {
   windows64: async () => {
     console.log("Loading Windows64 nw.js");

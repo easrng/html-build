@@ -1,29 +1,23 @@
-import consoleEle from "./consoleEle.js";
-[document.querySelector("h1")].forEach(e => {
-  consoleEle(
-    e.textContent.replace(/\s+/g, " ").trim(),
-    e.tagName,
-    e.id,
-    e.className,
-    "info"
-  );
-});
 console.info("Status will appear below.");
 console.info("");
 import * as Comlink from "https://unpkg.com/comlink/dist/esm/comlink.mjs";
 const worker = new Worker("worker.js");
 const compilers = Comlink.wrap(worker);
+const log=document.querySelector("#log")
+compilers.setLogger(Comlink.proxy(text=>{
+  log.value+=text+"\n"
+}));
 /* global saveAs */
-document.querySelector("body > form").onsubmit = async e => {
+document.querySelector("form").onsubmit = async e => {
   e.preventDefault();
   let o = {
     html: document.querySelector("#html").files[0],
     icon: document.querySelector("#icon").files[0],
     name: document.querySelector("#name").value
   };
-  document.querySelector("body > form > input[type=submit]").disabled = true;
+  document.querySelector("form input[type=submit]").disabled = true;
   let targets = [
-    ...document.querySelector("body > form > select").selectedOptions
+    ...document.querySelector("form select").selectedOptions
   ].map(e => e.value);
   for (var target of targets) {
     var [target, arch] = target.split("-");
@@ -32,7 +26,7 @@ document.querySelector("body > form").onsubmit = async e => {
       o.name + (arch ? " " + arch : "") + " - " + target + ".zip"
     );
   }
-  document.querySelector("body > form > input[type=submit]").disabled = false;
+  document.querySelector("form input[type=submit]").disabled = false;
 };
 let defaultParams = Object.fromEntries([
   ...new URLSearchParams(location.search).entries()
@@ -47,3 +41,11 @@ async function createFileListFromString(str) {
 }
 if(defaultParams.icon)createFileListFromString(defaultParams.icon).then(e=>document.querySelector("#icon").files=e)
 if(defaultParams.html)createFileListFromString(defaultParams.html).then(e=>document.querySelector("#html").files=e)
+for(let e of document.querySelectorAll('input[type="file"]')){
+let b=document.createElement("button")
+b.type="button"
+b.textContent="Choose File"
+e.insertAdjacentElement("beforeBegin",b)
+b.addEventListener("click",()=>e.click())
+e.style.display="none"
+}

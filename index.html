@@ -13,6 +13,16 @@
       defer
     ></script>
     <script src="/script.js" type="module" defer></script>
+    <style>
+      form > div {
+        margin-bottom: 0.8rem;
+        display: flex;
+        flex-direction: column;
+      }
+      #log {
+        height: 10rem;
+      }
+    </style>
   </head>
   <body>
     <main>
@@ -23,23 +33,40 @@
         </p>
       </header>
       <form>
-        <label for="name">App Name:</label>
-        <input type="text" id="name" />
-        <label for="html">HTML File:</label>
-        <input type="file" id="html" accept="text/html" />
-        <label for="icon">Icon:</label>
-        <input type="file" id="icon" accept="image/png" />
-        <label for="targets">Targets:</label>
-        <select multiple size="6">
-          <option value="windows-64">Windows 64-bit</option>
-          <option value="windows-32">Windows 32-bit</option>
-          <option value="mac">Mac 64-bit</option>
-          <option value="linux-64">Linux 64-bit</option>
-          <option value="linux-32">Linux 32-bit</option>
-          <option value="ios">iOS</option>
-        </select>
-        <br />
-        <input type="submit" value="Build" />
+        <div>
+          <label for="name">App Name:</label>
+          <input type="text" id="name" />
+        </div>
+        <div>
+          <label for="html">HTML File:</label>
+          <input type="file" id="html" accept="text/html" />
+        </div>
+        <div>
+          <label for="icon">Icon:</label>
+          <input type="file" id="icon" accept="image/png" />
+        </div>
+        <div>
+          <label for="targets">Targets:</label>
+          <select multiple size="6">
+            <option value="windows-64">Windows 64-bit</option>
+            <option value="windows-32">Windows 32-bit</option>
+            <option value="mac">Mac 64-bit</option>
+            <option value="linux-64">Linux 64-bit</option>
+            <option value="linux-32">Linux 32-bit</option>
+            <option value="ios">iOS</option>
+          </select>
+        </div>
+        <div>
+          <input type="submit" value="Build" />
+        </div>
+        <div>
+          <textarea
+            id="log"
+            readonly
+            height="300"
+            placeholder="Log output will appear here."
+          ></textarea>
+        </div>
       </form>
     </main>
   </body>
