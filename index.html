@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>HTML Build</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://unpkg.com/marx-css/css/marx.min.css" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js"
+      integrity="sha256-u/J1Urdrk3nCYFefpoeTMgI5viU1ujCDu2fXXoSJjhg="
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <script src="https://collect.easrng.workers.dev/js" defer></script>
+    <script src="/script.js" type="module" defer></script>
+    <style>
+      form > div {
+        margin-bottom: 0.8rem;
+        display: flex;
+        flex-direction: column;
+      }
+      #log {
+        height: 10rem;
+      }
+    </style>
+    <style id="setCursor"></style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>HTML Build</h1>
+        <p>
+          Make apps for Mac, Windows, Linux, and iOS, all in your browser.
+        </p>
+      </header>
+      <form>
+        <div>
+          <label for="name">App Name:</label>
+          <input type="text" id="name" />
+        </div>
+        <div>
+          <label for="html">HTML File:</label>
+          <input type="file" id="html" accept="text/html" />
+        </div>
+        <div>
+          <label for="icon">Icon:</label>
+          <input type="file" id="icon" accept="image/png" />
+        </div>
+        <div>
+          <label for="targets">Targets:</label>
+          <select multiple size="6">
+            <option value="windows-64">Windows 64-bit</option>
+            <option value="windows-32">Windows 32-bit</option>
+            <option value="mac">Mac 64-bit</option>
+            <option value="linux-64">Linux 64-bit</option>
+            <option value="linux-32">Linux 32-bit</option>
+            <option value="ios">iOS</option>
+          </select>
+        </div>
+        <div>
+          <input type="submit" value="Build" />
+        </div>
+        <div>
+          <textarea
+            id="log"
+            readonly
+            height="300"
+            placeholder="Log output will appear here."
+          ></textarea>
+        </div>
+      </form>
+    </main>
+    <script>
+      for (let e of document.querySelectorAll('input[type="file"]')) {
+        let b = document.createElement("button");
+        b.type = "button";
+        b.textContent = "Choose File";
+        e.insertAdjacentElement("beforeBegin", b);
+        b.addEventListener("click", () => e.click());
+        e.style.display = "none";
+      }
+    </script>
+  </body>
+</html>
