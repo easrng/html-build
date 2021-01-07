@@ -1,6 +1,7 @@
-/* global beacon */
+/* global getBeacon */
 import * as Comlink from "https://unpkg.com/comlink/dist/esm/comlink.mjs";
-beacon("load")
+const beacon=getBeacon("html-build")
+beacon("page-load")
 const worker = new Worker("worker.js");
 const compilers = Comlink.wrap(worker);
 const log=document.querySelector("#log")
@@ -16,6 +17,7 @@ document.querySelector("form").onsubmit = async e => {
     name: document.querySelector("#name").value
   };
   document.querySelector("form input[type=submit]").disabled = true;
+  beacon("build-start")
   document.querySelector("#setCursor").textContent="*{cursor:wait!important;}"
   let targets = [
     ...document.querySelector("form select").selectedOptions
@@ -28,6 +30,7 @@ document.querySelector("form").onsubmit = async e => {
     );
   }
   document.querySelector("form input[type=submit]").disabled = false;
+  beacon("build-done")
   document.querySelector("#setCursor").textContent="";
 };
 let defaultParams = Object.fromEntries([
