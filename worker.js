@@ -26,7 +26,7 @@ let allNwjs = {
   windows64: async () => {
     logger("Loading Windows64 nw.js");
     let b = await (await fetch(
-      "https://cdn.glitch.com/81b8b52c-881a-4697-bf55-08cc61865172%2Fnwjs-v0.48.0-win-x64.zip?v=1598799449670"
+      "https://files.catbox.moe/9xzjz2.zip"
     )).blob();
     logger("Loaded Windows64 nw.js");
     return b;
@@ -34,7 +34,7 @@ let allNwjs = {
   windows32: async () => {
     logger("Loading Windows32 nw.js");
     let b = await (await fetch(
-      "https://cdn.glitch.com/81b8b52c-881a-4697-bf55-08cc61865172%2Fnwjs-v0.48.0-win-ia32.zip?v=1598799436756"
+      "https://files.catbox.moe/axnv2g.zip"
     )).blob();
     logger("Loaded Windows32 nw.js");
     return b;
@@ -42,7 +42,7 @@ let allNwjs = {
   mac64: async () => {
     logger("Loading Mac nw.js");
     let b = await (await fetch(
-      "https://cdn.glitch.com/81b8b52c-881a-4697-bf55-08cc61865172%2Fnwjs-v0.48.0-osx-x64.zip?v=1598799481084"
+      "https://files.catbox.moe/mdaj0c.zip"
     )).blob();
     logger("Loaded Mac nw.js");
     return b;
@@ -50,7 +50,7 @@ let allNwjs = {
   linux64: async () => {
     logger("Loading Linux64 nw.js");
     let b = await (await fetch(
-      "https://cdn.glitch.com/81b8b52c-881a-4697-bf55-08cc61865172%2Fnwjs-v0.48.1-linux-x64.zip?v=1599844214939"
+      "https://files.catbox.moe/fjl7gh.zip"
     )).blob();
     logger("Loaded Linux64 nw.js");
     return b;
@@ -58,7 +58,7 @@ let allNwjs = {
   linux32: async () => {
     logger("Loading Linux32 nw.js");
     let b = await (await fetch(
-      "https://cdn.glitch.com/81b8b52c-881a-4697-bf55-08cc61865172%2Fnwjs-v0.48.1-linux-ia32.zip?v=1599844124303"
+      "https://files.catbox.moe/7kae6q.zip"
     )).blob();
     logger("Loaded Linux32 nw.js");
     return b;
