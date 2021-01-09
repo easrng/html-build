@@ -27,6 +27,25 @@
       .sponsor {
         min-height: 86px;
       }
+
+      [data-ea-publisher].loaded ~ .abfb {
+        display: none;
+      }
+
+      .abfb{
+        opacity:0;
+        animation: fadeIn ease 1s 3s;
+        animation-fill-mode:forwards;
+      }
+      
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
     </style>
     <style id="setCursor"></style>
   </head>
@@ -48,6 +67,12 @@
           data-ea-publisher="html-build-easrng-us-to"
           data-ea-type="text"
         ></div>
+        <div class="abfb">
+          Hi! I see you use an adblocker. I do too, but the ads on this site are
+          from <a href="https://ethicalads.io/?ref=ea-text">EthicalAds</a>. They
+          are unobtrusive, don't track you, and neither do we. Please consider whitelising us to
+          help support continued development.
+        </div>
       </div>
 
       <form>
