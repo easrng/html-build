@@ -1,4 +1,4 @@
-import badgeMaker from 'https://cdn.skypack.dev/badge-maker';
+import badgeMaker from "https://jspm.dev/badge-maker";
 const TIMEOUT = 10000;
 function jsonp(url) {
   return new Promise((resolve, reject) => {
@@ -28,5 +28,17 @@ function jsonp(url) {
   let ad = await jsonp(
     "https://server.ethicalads.io/api/v1/decision/?publisher=html-build-easrng-us-to&ad_types=text-v1&div_ids=ad&keywords=electron|nw.js|web|html&campaign_types=paid|community|house&format=jsonp"
   );
-  debugger;
+  const s = document.querySelector(".sponsor");
+  let i = new Image();
+  i.src = ad.view_url;
+  i.className = "pixel";
+  let a = document.createElement("a");
+  a.target="_blank"
+  a.href = ad.link;
+  a.innerHTML = badgeMaker.makeBadge({
+    label: ad.copy.headline.trim().replace(/:$/, ""),
+    message: ad.copy.content.trim() + " " + ad.copy.cta.trim(),
+    color: "blue"
+  });
+  s.append(i,a)
 })();
