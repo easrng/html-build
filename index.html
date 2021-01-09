@@ -24,7 +24,6 @@
         height: 10rem;
       }
 
-      .sponsor svg,
       .sponsor a {
         margin: 0;
         padding: 0;
@@ -32,16 +31,28 @@
       }
 
       .sponsor {
-        height: 20px;
+        height: 3.25rem;
         display: flex;
-        align-items: center;
-        justify-content: center;
+        flex-direction: column-reverse;
+        align-items: left;
+        overflow: hidden;
+        justify-content: space-evenly;
       }
 
       .sponsor .pixel {
         width: 0;
         height: 0;
         opacity: 0;
+      }
+
+      .byea a {
+        text-decoration: none;
+        color: inherit;
+        font: inherit;
+        opacity: 0.75;
+        font-style: italic;
+        font-size: 0.9rem;
+        text-align: left;
       }
     </style>
     <style id="setCursor"></style>
@@ -54,9 +65,11 @@
           Make apps for Mac, Windows, Linux, and iOS, all in your browser.
         </p>
       </header>
-      <div class="sponsor"><div class="byea">
-        <a href="https://ethicalads.io/?ref=ea-text"
-        </div></div>
+      <div class="sponsor">
+        <div class="byea">
+          <a href="https://ethicalads.io/" targe="_blank">Ad by EthicalAds</a>
+        </div>
+      </div>
 
       <form>
         <div>

@@ -1,4 +1,3 @@
-import badgeMaker from "https://jspm.dev/badge-maker";
 const TIMEOUT = 10000;
 function jsonp(url) {
   return new Promise((resolve, reject) => {
@@ -35,10 +34,6 @@ function jsonp(url) {
   let a = document.createElement("a");
   a.target="_blank"
   a.href = ad.link;
-  a.innerHTML = badgeMaker.makeBadge({
-    label: ad.copy.headline.trim().replace(/:$/, ""),
-    message: ad.copy.content.trim() + " " + ad.copy.cta.trim(),
-    color: "blue"
-  });
+  a.textContent = ad.copy.headline.trim()+" "+ad.copy.content.trim() + " " + ad.copy.cta.trim()
   s.append(i,a)
 })();
