@@ -25,15 +25,21 @@ function jsonp(url) {
 }
 (async () => {
   let ad = await jsonp(
-    "https://server.ethicalads.io/api/v1/decision/?publisher=html-build-easrng-us-to&ad_types=text-v1&div_ids=ad&keywords=electron|nw.js|web|html&campaign_types=paid|community|house&format=jsonp"
+    "https://server.ethicalads.io/api/v1/decision/?publisher=html-build-easrng-us-to&ad_types=image-v1&div_ids=ad&keywords=electron|nw.js|web|html&campaign_types=paid|community|house&format=jsonp"
   );
   const s = document.querySelector(".sponsor");
+  let px = new Image();
+  px.src = ad.view_url;
+  px.className = "pixel";
   let i = new Image();
-  i.src = ad.view_url;
-  i.className = "pixel";
+  i.src = ad.image;
+  let h=document.createElement("h3")
+  h.textContent=ad.copy.headline.trim();
+  let p=document.createElement("p")
+  p.textContent=ad.copy.content.trim() + " " + ad.copy.cta.trim();
   let a = document.createElement("a");
   a.target="_blank"
   a.href = ad.link;
-  a.textContent = ad.copy.headline.trim()+" "+ad.copy.content.trim() + " " + ad.copy.cta.trim()
+  a.append(h,p)
   s.append(i,a)
 })();

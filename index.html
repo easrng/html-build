@@ -31,14 +31,19 @@
       }
 
       .sponsor {
-        height: 3.25rem;
         display: flex;
         flex-direction: column-reverse;
-        align-items: left;
-        overflow: hidden;
-        justify-content: space-evenly;
+        background: #fff;
+        background-clip: padding-box;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+        border-radius: 4px;
+        color: rgba(0, 0, 0, 0.8);
+        width: 100%;
+        font-size: 1rem;
+        padding: 8px 16px;
+        line-height: 1.5;
+        background: #00000004;
       }
-
       .sponsor .pixel {
         width: 0;
         height: 0;
@@ -52,7 +57,7 @@
         opacity: 0.75;
         font-style: italic;
         font-size: 0.9rem;
-        text-align: left;
+        text-align: right;
       }
     </style>
     <style id="setCursor"></style>
@@ -66,9 +71,15 @@
         </p>
       </header>
       <div class="sponsor">
-        <div class="byea">
-          <a href="https://ethicalads.io/" targe="_blank">Ad by EthicalAds</a>
-        </div>
+        <script
+          async
+          src="https://media.ethicalads.io/media/client/ethicalads.min.js"
+        ></script>
+        <div
+          class="horizontal"
+          data-ea-publisher="html-build-easrng-us-to"
+          data-ea-type="image"
+        ></div>
       </div>
 
       <form>
@@ -122,6 +133,5 @@
       href="https://collect.easrng.workers.dev/"
       site="html-build"
     ></stats-control>
-    <script src="ad.js" async type="module"></script>
   </body>
 </html>
