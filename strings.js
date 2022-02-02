@@ -5,4 +5,5 @@ if(languages.includes(navigator.language)) language = navigator.language
 else if(languages.includes(navigator.language.split("-")[0])) language = navigator.language.split("-")[0]
 else language = "en"
 
-export await import("./strings/"+language+".js");
+const strings = await import("./strings/"+language+".js");
+export {...strings}
