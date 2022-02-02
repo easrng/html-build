@@ -1,7 +1,8 @@
 /* global JSZip Comlink */
 importScripts("https://unpkg.com/comlink/dist/umd/comlink.js");
 importScripts("https://stuk.github.io/jszip/dist/jszip.js");
-const stringsReady = import('./strings.js').then(s=>strings=s.default)
+
+let strings;
 
 function genUUID() {
   // Reference: https://stackoverflow.com/a/2117523/709884
@@ -22,7 +23,7 @@ function b2d(b) {
   });
 }
 let logger=(e)=>console.log(e);
-let compilers = {setLogger:fn=>logger=fn};
+let compilers = {setLogger:fn=>logger=fn, setStrings:s=>strings=s};
 let allNwjs = {
   windows64: async () => {
     logger(strings.logLoadingWindows64NwJs);
@@ -66,7 +67,6 @@ let allNwjs = {
   }
 };
 async function getNwjs(version) {
-  await stringsReady;
   if (typeof allNwjs[version] == "function") {
     allNwjs[version] = allNwjs[version]();
   }
