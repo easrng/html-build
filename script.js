@@ -7,6 +7,7 @@ const log=document.querySelector("#log")
 compilers.setLogger(Comlink.proxy(text=>{
   log.value+=text+"\n"
 }));
+compilers.setStrings(Comlink.proxy(strings));
 /* global saveAs */
 document.querySelector("form").onsubmit = async e => {
   e.preventDefault();
