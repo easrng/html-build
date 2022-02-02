@@ -1,6 +1,6 @@
 export const title = "HTML Build"
 export const description = "Make apps for Mac, Windows, Linux, and iOS, all in your browser."
-export const appNameLabel = "App Name"
+export const appNameLabel = "App Name:"
 export const htmlFileLabel = "HTML File:"
 export const iconFileLabel = "Icon:"
 export const targetsLabel = "Targets:"
