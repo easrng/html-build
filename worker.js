@@ -1,7 +1,7 @@
 /* global JSZip Comlink */
 importScripts("https://unpkg.com/comlink/dist/umd/comlink.js");
 importScripts("https://stuk.github.io/jszip/dist/jszip.js");
-importScripts("strings.worker.js")
+const stringsReady = import('./strings.js').then(s=>strings=s)
 
 function genUUID() {
   // Reference: https://stackoverflow.com/a/2117523/709884
@@ -66,6 +66,7 @@ let allNwjs = {
   }
 };
 async function getNwjs(version) {
+  await stringsReady;
   if (typeof allNwjs[version] == "function") {
     allNwjs[version] = allNwjs[version]();
   }
