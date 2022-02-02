@@ -55,33 +55,33 @@
   <body>
     <main>
       <header>
-        <h1>HTML Build</h1>
-        <p>
+        <h1 data-l10n-string="title">HTML Build</h1>
+        <p data-l10n-string="description">
           Make apps for Mac, Windows, Linux, and iOS, all in your browser.
         </p>
       </header>
       <form>
         <div>
-          <label for="name">App Name:</label>
+          <label for="name" data-l10n-string="appNameLabel">App Name:</label>
           <input type="text" id="name" />
         </div>
         <div>
-          <label for="html">HTML File:</label>
+          <label for="html" data-l10n-string="htmlFileLabel">HTML File:</label>
           <input type="file" id="html" accept="text/html" />
         </div>
         <div>
-          <label for="icon">Icon:</label>
+          <label for="icon" data-l10n-string="iconFileLabel">Icon:</label>
           <input type="file" id="icon" accept="image/png" />
         </div>
         <div>
-          <label for="targets">Targets:</label>
+          <label for="targets" data-l10n-string="targetsLabel">Targets:</label>
           <select id="targets" multiple size="6">
-            <option value="windows-64">Windows 64-bit</option>
-            <option value="windows-32">Windows 32-bit</option>
-            <option value="mac">Mac 64-bit</option>
-            <option value="linux-64">Linux 64-bit</option>
-            <option value="linux-32">Linux 32-bit</option>
-            <option value="ios">iOS</option>
+            <option value="windows-64" data-l10n-string="targetWin64">Windows 64-bit</option>
+            <option value="windows-32" data-l10n-string="targetWin32">Windows 32-bit</option>
+            <option value="mac" data-l10n-string="targetMac">Mac 64-bit</option>
+            <option value="linux-64" data-l10n-string="targetLinux64">Linux 64-bit</option>
+            <option value="linux-32" data-l10n-string="targetLinux32">Linux 32-bit</option>
+            <option value="ios" data-l10n-string="targetIOS">iOS</option>
           </select>
         </div>
         <div>
