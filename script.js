@@ -1,5 +1,5 @@
 import * as Comlink from "https://unpkg.com/comlink/dist/esm/comlink.mjs";
-import * as strings from "./strings.js";
+import strings from "./strings.js";
 stats.beacon("page-load")
 const worker = new Worker("worker.js");
 const compilers = Comlink.wrap(worker);
