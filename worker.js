@@ -1,7 +1,7 @@
 /* global JSZip Comlink */
 importScripts("https://unpkg.com/comlink/dist/umd/comlink.js");
 importScripts("https://stuk.github.io/jszip/dist/jszip.js");
-const stringsReady = import('./strings.js').then(s=>strings=s)
+const stringsReady = import('./strings.js').then(s=>strings=s.default)
 
 function genUUID() {
   // Reference: https://stackoverflow.com/a/2117523/709884
