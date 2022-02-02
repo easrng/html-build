@@ -1,10 +1,12 @@
 import * as Comlink from "https://unpkg.com/comlink/dist/esm/comlink.mjs";
 import strings from "./strings.js";
 window.strings=strings
+for(let e of document.querySelectorAll('[data-l10n-string]')) e.textContent=strings[e.dataset.l10nString]
 stats.beacon("page-load")
 const worker = new Worker("worker.js");
 const compilers = Comlink.wrap(worker);
-const log=document.querySelector("#log")
+const log=document.querySelector("#log");
+log.placeholder=strings.logPlaceholder;
 compilers.setLogger(Comlink.proxy(text=>{
   log.value+=text+"\n"
 }));
