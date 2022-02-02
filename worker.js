@@ -1,6 +1,7 @@
 /* global JSZip Comlink */
 importScripts("https://unpkg.com/comlink/dist/umd/comlink.js");
 importScripts("https://stuk.github.io/jszip/dist/jszip.js");
+importScripts("strings.worker.js")
 
 function genUUID() {
   // Reference: https://stackoverflow.com/a/2117523/709884
@@ -24,43 +25,43 @@ let logger=(e)=>console.log(e);
 let compilers = {setLogger:fn=>logger=fn};
 let allNwjs = {
   windows64: async () => {
-    logger("Loading Windows64 nw.js");
+    logger(strings.logLoadingWindows64NwJs);
     let b = await (await fetch(
       "https://files.catbox.moe/9xzjz2.zip"
     )).blob();
-    logger("Loaded Windows64 nw.js");
+    logger(strings.logLoadedWindows64NwJs);
     return b;
   },
   windows32: async () => {
-    logger("Loading Windows32 nw.js");
+    logger(strings.logLoadingWindows32NwJs);
     let b = await (await fetch(
       "https://files.catbox.moe/axnv2g.zip"
     )).blob();
-    logger("Loaded Windows32 nw.js");
+    logger(strings.logLoadedWindows32NwJs);
     return b;
   },
   mac64: async () => {
-    logger("Loading Mac nw.js");
+    logger(strings.logLoadingMacNwJs);
     let b = await (await fetch(
       "https://files.catbox.moe/mdaj0c.zip"
     )).blob();
-    logger("Loaded Mac nw.js");
+    logger(strings.logLoadedMacNwJs);
     return b;
   },
   linux64: async () => {
-    logger("Loading Linux64 nw.js");
+    logger(strings.logLoadingLinux64NwJs);
     let b = await (await fetch(
       "https://files.catbox.moe/fjl7gh.zip"
     )).blob();
-    logger("Loaded Linux64 nw.js");
+    logger(strings.logLoadedLinux64NwJs);
     return b;
   },
   linux32: async () => {
-    logger("Loading Linux32 nw.js");
+    logger(strings.logLoadingLinux32NwJs);
     let b = await (await fetch(
       "https://files.catbox.moe/7kae6q.zip"
     )).blob();
-    logger("Loaded Linux32 nw.js");
+    logger(strings.logLoadedLinux32NwJs);
     return b;
   }
 };
@@ -100,9 +101,9 @@ compilers.windows = async o => {
   zip.file(prefix + "icon.png", o.icon);
   zip.file(prefix + "index.html", o.html);
   zip.file("Launch.bat", `START "" ${prefix.replace(/\//g, "\\")}nw.exe`);
-  logger("Generating app for Windows...");
+  logger(strings.logGeneratingAppForWindows);
   let zipBlob = await zip.generateAsync({ type: "blob" });
-  logger("Generated app for Windows!");
+  logger(strings.logGeneratedAppForWindows);
   return zipBlob;
 };
 
@@ -122,9 +123,9 @@ compilers.linux = async o => {
   );
   zip.file(prefix + "icon.png", o.icon);
   zip.file(prefix + "index.html", o.html);
-  logger("Generating app for Linux...");
+  logger(strings.logGeneratingAppForLinux);
   let zipBlob = await zip.generateAsync({ type: "blob" });
-  logger("Generated app for Linux!");
+  logger(strings.logGeneratedAppForLinux);
   return zipBlob;
 };
 
@@ -147,9 +148,9 @@ compilers.mac = async o => {
   );
   zip.file(prefix + "icon.png", o.icon);
   zip.file(prefix + "index.html", o.html);
-  logger("Generating app for Mac...");
+  logger(strings.logGeneratingAppForMac);
   let zipBlob = await zip.generateAsync({ type: "blob" });
-  logger("Generated app for Mac!");
+  logger(strings.logGeneratedAppForMac);
   return zipBlob;
 };
 
@@ -226,9 +227,9 @@ compilers.ios = async o => {
       { type: "application/x-apple-aspen-config" }
     )
   );
-  logger("Generating app for iOS...");
+  logger(strings.logGeneratingAppForIos);
   let zipBlob = await zip.generateAsync({ type: "blob" });
-  logger("Generated app for iOS!");
+  logger(strings.logGeneratedAppForIos);
   return zipBlob;
 };
 
