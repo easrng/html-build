@@ -1,5 +1,7 @@
 import * as Comlink from "https://unpkg.com/comlink/dist/esm/comlink.mjs";
 import strings from "./strings.js";
+const eh = type => e => {console.error(e); stats.beacon(type)}
+
 document.documentElement.lang=strings.language;
 for(let e of document.querySelectorAll('[data-l10n-string]')) e.textContent=strings[e.dataset.l10nString]
 stats.beacon("page-load")
@@ -13,6 +15,7 @@ compilers.setLogger(Comlink.proxy(text=>{
 compilers.setStrings(Object.assign({}, strings));
 /* global saveAs */
 document.querySelector("form").onsubmit = async e => {
+  try {
   e.preventDefault();
   let o = {
     html: document.querySelector("#html").files[0],
@@ -35,7 +38,12 @@ document.querySelector("form").onsubmit = async e => {
   document.querySelector("form input[type=submit]").disabled = false;
   stats.beacon("build-done")
   document.querySelector("#setCursor").textContent="";
+  }catch(e){
+  log.value+="Error building app.\n"
+  eh("build-error")(e)
+  }
 };
+try{
 let defaultParams = Object.fromEntries([
   ...new URLSearchParams(location.search).entries()
 ]);
@@ -47,5 +55,8 @@ async function createFileListFromString(str) {
   list.items.add(file);
   return list.files;
 }
-if(defaultParams.icon)createFileListFromString(defaultParams.icon).then(e=>document.querySelector("#icon").files=e)
+if(defaultParams.icon)createFileListFromString(defaultParams.icon).then(e=>document.querySelector("#icon").files=e).catch(eh("param-error"))
 if(defaultParams.html)createFileListFromString(defaultParams.html).then(e=>document.querySelector("#html").files=e)
+}catch(e){
+eh("param-error")(e)
+}
