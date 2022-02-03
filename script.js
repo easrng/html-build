@@ -1,6 +1,6 @@
 import * as Comlink from "https://unpkg.com/comlink/dist/esm/comlink.mjs";
 import strings from "./strings.js";
-const eh = type => e => {console.error(e); stats.beacon(type)}
+const eh = type => e => {console.error(e); stats.beacon(type); document.querySelector("form button[type=submit]").disabled = false; document.querySelector("#setCursor").textContent=""}
 
 document.documentElement.lang=strings.language;
 for(let e of document.querySelectorAll('[data-l10n-string]')) e.textContent=strings[e.dataset.l10nString]
