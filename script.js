@@ -22,7 +22,7 @@ document.querySelector("form").onsubmit = async e => {
     icon: document.querySelector("#icon").files[0],
     name: document.querySelector("#name").value
   };
-  document.querySelector("form input[type=submit]").disabled = true;
+  document.querySelector("form button[type=submit]").disabled = true;
   stats.beacon("build-start")
   document.querySelector("#setCursor").textContent="*{cursor:wait!important;}"
   let targets = [
@@ -35,7 +35,7 @@ document.querySelector("form").onsubmit = async e => {
       o.name + (arch ? " " + arch : "") + " - " + target + ".zip"
     );
   }
-  document.querySelector("form input[type=submit]").disabled = false;
+  document.querySelector("form button[type=submit]").disabled = false;
   stats.beacon("build-done")
   document.querySelector("#setCursor").textContent="";
   }catch(e){
